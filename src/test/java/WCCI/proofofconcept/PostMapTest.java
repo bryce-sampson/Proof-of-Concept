@@ -18,7 +18,7 @@ public class PostMapTest {
 	@Test
 	public void shouldBeAbleToGetAllTheDeatils() {
 		Author underTest1 = new Author("Dan");
-		underTest.addPostToMap(new Post("a post", null, null, "Jan,01,1999", "good song"));
+		underTest.addPostToMap(new Post("a post", new Author("Dan"), null, "Jan,01,1999", "good song"));
 
 	}
 
