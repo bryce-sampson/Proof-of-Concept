@@ -10,14 +10,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class Author {
 
-	private String name;
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	@OneToMany(mappedBy = "author")
 	private Collection<Post> posts;
 	
-	@Id
-	@GeneratedValue
-	private Long id;
+	private String name;
 
 	public Author(String name) {
 		this.name = name;
@@ -27,6 +27,11 @@ public class Author {
 		return id;
 	}
 
+	protected Author(){
+		
+	}
+	
+	
 	public String getName() {
 		return name;
 	}

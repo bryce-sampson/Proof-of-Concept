@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Genre {
 
-	private String genName;
 	
 	@Id
 	@GeneratedValue
@@ -19,6 +18,7 @@ public class Genre {
 	@OneToMany(mappedBy = "genre")
 	private Collection<Post> posts;
 	
+	private String genName;
 
 	public Genre(String genName) {
 		this.genName = genName;
@@ -28,6 +28,10 @@ public class Genre {
 		return id;
 	}
 
+	protected Genre() {
+		
+	}
+	
 	public String getGenName() {
 		return genName;
 	}

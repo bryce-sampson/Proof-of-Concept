@@ -8,14 +8,14 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Post {
 
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	@ManyToOne
 	private Author author;
 	@ManyToOne
 	private Genre genre;
-
-	@Id
-	@GeneratedValue
-	private Long id;
 
 	String title;
 	String publishDate;
@@ -33,6 +33,10 @@ public class Post {
 
 	public Long getId() {
 		return id;
+	}
+	
+	protected Post() {
+	
 	}
 
 	public String getTitle() {
