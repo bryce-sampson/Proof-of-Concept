@@ -2,6 +2,7 @@ package WCCI.proofofconcept;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface PostRepository extends CrudRepository<Post, Long>{
+
+	public interface GenreRepository extends CrudRepository<Genre, Long>{
 
 }
