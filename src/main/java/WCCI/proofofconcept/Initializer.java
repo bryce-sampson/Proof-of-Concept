@@ -16,6 +16,9 @@ public class Initializer implements CommandLineRunner {
 	@Autowired
 	private PostRepository postRepo;
 	
+	@Autowired
+	private PostTagRepository postTagRepo;
+	
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -25,6 +28,8 @@ public class Initializer implements CommandLineRunner {
 		genreRepo.save(punk);
 		Post post = new Post("title", dan, punk, "date", "body");
 		postRepo.save(post);
+		PostTag guitar = new PostTag("guitar");
+		postTagRepo.save(guitar);
 	}
 
 }

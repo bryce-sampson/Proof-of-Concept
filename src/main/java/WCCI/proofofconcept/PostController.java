@@ -16,6 +16,9 @@ public class PostController {
 	
 	@Autowired
 	private AuthorRepository authorRepo;
+	
+	@Autowired
+	private GenreRepository genreRepo;
 
 	private Genre genre;
 
@@ -32,14 +35,20 @@ public class PostController {
 	}
 
 	//changed from post to author, posted need a object to be made, the author was easier
-	@PostMapping("/add/{name}")
-	public String addAuthor(@PathVariable("name") String name) {
-		Author authorToAdd = new Author(name);
-		authorRepo.save(authorToAdd);
-		return "redirect:/";
+//	@PostMapping("/add/{name}")
+//	public String addAuthor(@PathVariable("name") String name) {
+//		Author authorToAdd = new Author(name);
+//		authorRepo.save(authorToAdd);
+//		return "redirect:/";
+//		
+//	}
+	@PostMapping("/add/post/")
+	public String addPost(String title, Author author, Genre genre, String publishDate, String body) {
+		Post postToAdd = new Post(title, author, genre, publishDate, body);
+		postRepo.save(postToAdd);
+		return "redirect:/author/post" + postToAdd.getId();
 		
 	}
-	
 	
 
 	
