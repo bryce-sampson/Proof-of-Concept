@@ -20,6 +20,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(PostController.class)
 
@@ -30,6 +32,9 @@ public class PostControllerMvcTest {
 
 	@MockBean
 	private PostRepository postRepo;
+
+	@MockBean
+	private AuthorRepository authorRepo;
 
 	@Mock
 	private Post postOne;
@@ -49,7 +54,7 @@ public class PostControllerMvcTest {
 	@Test
 	public void addAuthorTest() throws Exception {
 		Author authorToAdd = new Author("dan");
-		mvc.perform(post("/add").contentType(MediaType.APPLICATION_JSON).content(toJson(authorToAdd)))
+		mvc.perform(post("/author/add/" + authorToAdd.getName()))//.contentType(MediaType.APPLICATION_JSON).content(toJson(authorToAdd)))
 				.andExpect(status().is3xxRedirection());
 
 	}
