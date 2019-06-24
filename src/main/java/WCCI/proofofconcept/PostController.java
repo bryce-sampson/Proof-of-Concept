@@ -13,8 +13,11 @@ public class PostController {
 
 	@Autowired
 	private PostRepository postRepo;
-	private Genre genre;
+	
+	@Autowired
+	private AuthorRepository authorRepo;
 
+	private Genre genre;
 
 	@RequestMapping("")
 	public String findAllPostByAuthor(Model model) {
@@ -28,23 +31,16 @@ public class PostController {
 		return "singlePostView";
 	}
 
-	@PostMapping("/add")
-	public String addPost(Author author) {
-		Post postToAdd = new Post("", author, genre, "", "");
-		if (postRepo.findById(postToAdd.getId()) == null) {
-			postRepo.save(postToAdd);
-		}
-		return "redirect:/post/{id}";
+	//changed from post to author, posted need a object to be made, the author was easier
+	@PostMapping("/add/{name}")
+	public String addAuthor(@PathVariable("name") String name) {
+		Author authorToAdd = new Author(name);
+		authorRepo.save(authorToAdd);
+		return "redirect:/";
 		
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

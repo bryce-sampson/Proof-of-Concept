@@ -9,13 +9,13 @@ public class GenreTest {
 	@Test
 	public void genreShouldHaveName() {
 		Genre underTest = new Genre("");
-		String genre =	underTest.getGenName();
+		String genre =	underTest.getName();
 		assertThat(genre, is(""));
 	}
 	@Test
 	public void genreShouldHaveNamePunk() {
 		Genre underTest = new Genre("Punk");
-		String genre =	underTest.getGenName();
+		String genre =	underTest.getName();
 		assertThat(genre, is("Punk"));
 	}
 }

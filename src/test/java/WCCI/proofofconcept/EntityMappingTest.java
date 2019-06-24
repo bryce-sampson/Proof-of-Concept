@@ -58,7 +58,7 @@ public class EntityMappingTest {
 		entityManager.persist(genre);
 		entityManager.flush();
 		Genre foundGenre = genreRepo.findById(genre.getId()).get();
-		assertThat(foundGenre.getGenName(), is("punk"));
+		assertThat(foundGenre.getName(), is("punk"));
 	}
 	
 
