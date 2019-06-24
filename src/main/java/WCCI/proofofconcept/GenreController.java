@@ -19,12 +19,11 @@ public class GenreController {
 		return "genresView";
 	}
 
-	// find out can use name method or use ID method
-	@RequestMapping("{genName}")
-	public String renderOneGenre(@PathVariable("genName") String genName, Model model) {
-		model.addAttribute("genreModel", genreRepo.findByName(genName));
+	@RequestMapping("{name}")
+	public String renderOneGenre(@PathVariable("name") String name, Model model) {
+		model.addAttribute("genreModel", genreRepo.findByName(name));
 		return "genreView";
-// add genre not found redirect
+
 	}
 
 }

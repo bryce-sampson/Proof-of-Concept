@@ -3,6 +3,7 @@ package WCCI.proofofconcept;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -11,16 +12,17 @@ public class Post {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@ManyToOne
 	private Author author;
 	@ManyToOne
 	private Genre genre;
+	@ManyToMany
+	private PostTag postTag;
 
 	String title;
 	String publishDate;
 	String body;
-	String tags;
 
 	public Post(String title, Author author, Genre genre, String publishDate, String body) {
 		super();
@@ -34,31 +36,33 @@ public class Post {
 	public Long getId() {
 		return id;
 	}
-	
+
 	protected Post() {
-	
+
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public String getBody() {
-		return body;
+	public Author getAuthor() {
+		return author;
 	}
 
-//	public String getAuthor() {
-//		return Author;
-//	}
+	public Genre getGenre() {
+		return genre;
+	}
+
 	public String getPublishDate() {
 		return publishDate;
 	}
 
-//	public Genre getGenre() {
-//		return genre;
-//	}
-	public String getTags() {
-		return tags;
+	public String getBody() {
+		return body;
+	}
+
+	public PostTag getPostTag() {
+		return postTag;
 	}
 
 	@Override
