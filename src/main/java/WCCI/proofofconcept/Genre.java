@@ -1,5 +1,6 @@
 package WCCI.proofofconcept;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -15,8 +16,12 @@ public class Genre {
 	private Long id;
 
 	@OneToMany(mappedBy = "genre")
-	private Collection<Post> posts;
+	private Collection<Post> posts = new ArrayList<Post>();
 	
+	public void addPost(Post post) {
+		this.posts.add(post);
+		
+	}
 	private String name;
 
 	public Genre(String name) {
@@ -63,6 +68,7 @@ public class Genre {
 			return false;
 		return true;
 	}
+
 
 	
 	

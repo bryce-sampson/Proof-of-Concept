@@ -86,8 +86,6 @@ public class PostControllerMvcTest {
 		PostTag postTagToAdd = new PostTag("guitar");
 		mvc.perform(post("/postTag/add/" + postTagToAdd.getName()))
 		.andExpect(status().is3xxRedirection());
-		
-		
 	}
 	
 	

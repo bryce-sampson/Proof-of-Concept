@@ -1,5 +1,6 @@
 package WCCI.proofofconcept;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Post {
@@ -20,7 +22,12 @@ public class Post {
 	@ManyToOne
 	private Genre genre;
 	@ManyToMany
-	private List<PostTag> postTag;
+	private List<PostTag> postTag = new ArrayList<PostTag>();
+	
+	public void addPostTag(PostTag postTag) {
+		this.postTag.add(postTag);
+		
+	}
 
 	String title;
 	String publishDate;
@@ -91,5 +98,6 @@ public class Post {
 			return false;
 		return true;
 	}
+
 
 }

@@ -1,11 +1,13 @@
 package WCCI.proofofconcept;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
 
 @Entity
 public class PostTag {
@@ -15,8 +17,12 @@ public class PostTag {
 	private Long id;
 
 	@ManyToMany(mappedBy = "postTag")
-	private Collection<Post> posts;
+	private Collection<Post> posts = new ArrayList<Post>();
 
+	public void addPost(Post post) {
+		this.posts.add(post);
+		
+	}
 	private String name;
 
 	public PostTag(String name) {
@@ -63,4 +69,5 @@ public class PostTag {
 			return false;
 		return true;
 	}
+
 }
