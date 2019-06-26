@@ -20,6 +20,9 @@ public class ApplicationTest {
 
 	@Autowired
 	private MockMvc mockMvc;
+	
+	@Autowired
+	private PostRepository postRepo;
 
 	private void assertThatStatusIsOk(String mapping) throws Exception {
 		ResultActions performMockGetRequest = this.mockMvc.perform(get(mapping));
@@ -34,7 +37,10 @@ public class ApplicationTest {
 	
 	@Test
 	public void shouldPostStatusBeOk() throws Exception {
-		assertThatStatusIsOk("/author/post/{id}");
+		Iterable<Post> posts = postRepo.findAll();
+		for(Post post: posts) {
+		assertThatStatusIsOk("/author/post/" + post.getId());
+		}
 	}
 	
 	
