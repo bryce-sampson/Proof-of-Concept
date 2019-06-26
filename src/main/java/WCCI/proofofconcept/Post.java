@@ -1,5 +1,7 @@
 package WCCI.proofofconcept;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +20,7 @@ public class Post {
 	@ManyToOne
 	private Genre genre;
 	@ManyToMany
-	private PostTag postTag;
+	private List<PostTag> postTag;
 
 	String title;
 	String publishDate;
@@ -61,7 +63,7 @@ public class Post {
 		return body;
 	}
 
-	public PostTag getPostTag() {
+	public List<PostTag> getPostTag() {
 		return postTag;
 	}
 

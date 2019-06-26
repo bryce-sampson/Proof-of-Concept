@@ -1,6 +1,7 @@
 package WCCI.proofofconcept;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -23,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PostController.class)
+@WebMvcTest
 
 public class PostControllerMvcTest {
 
@@ -35,12 +36,27 @@ public class PostControllerMvcTest {
 
 	@MockBean
 	private AuthorRepository authorRepo;
+	
+	@MockBean
+	private GenreRepository genreRepo;
+	
+	@MockBean
+	private PostTagRepository postTagRepo;
 
 	@Mock
 	private Post postOne;
 
 	@Mock
 	private Post postTwo;
+	
+	@Mock
+	private Author author;
+	
+	@Mock
+	private Genre genre;
+	
+	@Mock
+	private PostTag postTag;
 
 	@Test
 	public void shouldReturnStatusOfOk() throws Exception {
@@ -50,17 +66,32 @@ public class PostControllerMvcTest {
 	}
 
 	
-	// can not figure out why this does not work new post or author??
 	@Test
 	public void addAuthorTest() throws Exception {
 		Author authorToAdd = new Author("dan");
-		mvc.perform(post("/author/add/" + authorToAdd.getName()))//.contentType(MediaType.APPLICATION_JSON).content(toJson(authorToAdd)))
+		mvc.perform(post("/author/add/" + authorToAdd.getName()))
 				.andExpect(status().is3xxRedirection());
 
 	}
 
-	private String toJson(Author newAuthor) {
-		return newAuthor.getName();
+	@Test
+	public void addGenreTest() throws Exception {
+		Genre genreToAdd = new Genre("punk");
+		mvc.perform(post("/genre/add/" + genreToAdd.getName()))
+		.andExpect(status().is3xxRedirection());
+		
 	}
+	@Test
+	public void addPostTagTest() throws Exception{
+		PostTag postTagToAdd = new PostTag("guitar");
+		mvc.perform(post("/postTag/add/" + postTagToAdd.getName()))
+		.andExpect(status().is3xxRedirection());
+		
+		
+	}
+	
+	
+	
+	
 
 }

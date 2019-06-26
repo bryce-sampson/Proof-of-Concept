@@ -26,10 +26,10 @@ public class Initializer implements CommandLineRunner {
 		authorRepo.save(dan);
 		Genre punk = new Genre("punk");
 		genreRepo.save(punk);
-		Post post = new Post("title", dan, punk, "date", "body");
-		postRepo.save(post);
 		PostTag guitar = new PostTag("guitar");
 		postTagRepo.save(guitar);
+		Post post = new Post("title", dan, punk, "date", "body");
+		postRepo.save(post);
 	}
 
 }
