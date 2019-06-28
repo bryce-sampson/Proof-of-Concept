@@ -22,14 +22,13 @@ public class Initializer implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Author dan = new Author("dan");
-		authorRepo.save(dan);
+		authorRepo.save(new Author("dan"));
+		//update save feature of genre and post and add tag
 		Genre punk = new Genre("punk");
 		genreRepo.save(punk);
 		PostTag guitar = new PostTag("guitar");
 		postTagRepo.save(guitar);
-		Post post = new Post("title", dan, punk, "date", "body");
-		postRepo.save(post);
+		postRepo.save(new Post("title", authorRepo.findByName("dan"), punk, "date", "body"));
 	}
 
 }
