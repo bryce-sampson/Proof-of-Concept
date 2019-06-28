@@ -28,12 +28,8 @@ public class EntityMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadPost( ) {
-//		We think we should be able to refactor this test by taking out the save 
-//		lines but we can't figure it out yet
 		Author author = new Author("dan");
-//		authorRepo.save(author);
 		Genre punk = new Genre("punk");
-//		genreRepo.save(punk);
 		Post post = new Post("1", author, punk, null, null);
 		entityManager.persist(author);
 		entityManager.persist(punk);
@@ -61,10 +57,56 @@ public class EntityMappingTest {
 		assertThat(foundGenre.getName(), is("punk"));
 	}
 	
-
-
-
-
+	@Test
+	public void addPostToAuthorAndGetPostCollectionSize(){
+		Author dan = new Author("dan");
+		entityManager.persist(dan);
+		entityManager.flush();
+		dan.addPost(new Post());
+		assertThat(dan.getPosts().size(), is(1));	
+	}
+	@Test
+	public void addPostToGenreAndGetCollectionSize() {
+		Genre punk = new Genre("punk");
+		entityManager.persist(punk);
+		entityManager.flush();
+		punk.addPost(new Post());
+		assertThat(punk.getPosts().size(), is(1));
+			
+	}
+	@Test 
+	public void addPostTagsToPostAndGetCollectionSize() {
+		PostTag stick = new PostTag("stick");
+		entityManager.persist(stick);
+		entityManager.flush();
+		stick.addPost(new Post());
+		assertThat(stick.getPosts().size(), is(1));
+		
+	}
+	@Test 
+	public void addPostTagsTwiceToPostAndGetCollectionSize() {
+		PostTag stick = new PostTag("stick");
+		entityManager.persist(stick);
+		entityManager.flush();
+		stick.addPost(new Post());
+		stick.addPost(new Post());
+		assertThat(stick.getPosts().size(), is(2));
+		
+	}
+	@Test
+	public void addPostToPostTagTwiceAndGetCollectionSize() {
+		Author author = new Author("dan");
+		Genre punk = new Genre("punk");
+		Post post = new Post("post", author, punk, null, null);
+		entityManager.persist(author);
+		entityManager.persist(punk);
+		entityManager.persist(post);
+		entityManager.flush();
+		post.addPostTag(new PostTag());
+		post.addPostTag(new PostTag());
+		assertThat(post.getPostTag().size(), is(2));
+		
+	}
 
 
 

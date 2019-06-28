@@ -23,6 +23,7 @@ public class GenreController {
 	@RequestMapping("/{name}")
 	public String renderOneGenre(@PathVariable("name") String name, Model model) {
 		model.addAttribute("genreModel", genreRepo.findByName(name));
+		model.addAttribute("postsModel", genreRepo.findByName(name).getPosts());
 		return "singleGenreView";
 
 	}

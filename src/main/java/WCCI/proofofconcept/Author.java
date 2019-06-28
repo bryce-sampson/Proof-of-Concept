@@ -1,5 +1,6 @@
 package WCCI.proofofconcept;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -15,8 +16,13 @@ public class Author {
 	private Long id;
 
 	@OneToMany(mappedBy = "author")
-	private Collection<Post> posts;
+	private Collection<Post> posts = new ArrayList<Post>();
+	//I don't know why adding " = new ArrayList<Post>()" is significant
 	
+	public void addPost(Post post) {
+		this.posts.add(post);
+		
+	}
 	private String name;
 
 	public Author(String name) {
@@ -64,6 +70,7 @@ public class Author {
 			return false;
 		return true;
 	}
+
 	
 	
 	
