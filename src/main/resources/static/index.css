@@ -1,0 +1,19 @@
+.toast {
+  font-size: 20px;
+  position: fixed;
+  bottom: 4.8rem;
+  right: 0.5rem;
+  margin-left: 0.5rem;
+  max-width: 15rem;
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #fff;
+  cursor: pointer;
+  color: #fff;
+  background: rgb(255, 174, 0);
+  transition: 0.2s ease-out;
+  text-decoration: none;
+  transform: translateY(calc(100% + 1rem));
+  animation: toast-pop 0.5s ease-out 2s forwards;
+}

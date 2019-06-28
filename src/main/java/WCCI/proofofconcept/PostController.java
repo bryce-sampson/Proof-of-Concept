@@ -20,10 +20,16 @@ public class PostController {
 	@Autowired
 	private GenreRepository genreRepo;
 
-
 	@RequestMapping("")
-	public String findAllPostByAuthor(Model model) {
-		model.addAttribute("authorModel", postRepo.findAll());
+	public String renderAuthorsAll(Model model) {
+		model.addAttribute("authorsModel", authorRepo.findAll());
+		return "authorsView";
+	}
+
+	@RequestMapping("{id}")
+	public String findAllPostByAuthor(Model model, Long id) {
+		model.addAttribute("authorModel", authorRepo.findById(id).get());
+		model.addAttribute("postsModel", authorRepo.findById(id).get().getPosts());
 		return "singleAuthorView";
 	}
 
