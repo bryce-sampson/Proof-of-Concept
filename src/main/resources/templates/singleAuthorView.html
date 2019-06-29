@@ -13,7 +13,7 @@
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
         <div class="post" th:each="post: ${postsModel}">
-            <a th:href="|/author/${post.id}|">
+            <a th:href="|/author/post/${post.id}|">
                 <h1 th:text="${post.title}">Title</h1>
             </a>
 
