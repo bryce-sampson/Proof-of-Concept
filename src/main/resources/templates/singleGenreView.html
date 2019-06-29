@@ -2,21 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <div th:insert="fragments/head.html :: head"></div>
+    <title>Genre</title>
 </head>
 
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
-    <main>
-        <p> X marks spot</p>
+    <main class="container">
         <div class="genre" th:each="genre: ${genreModel}">
             <a th:href="|/genre/${genre.name}|">
                 <h3 th:text="${genre.name}"> Name </h3>
             </a>
         </div>
+        <a href="/genre/">All Genres</a>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
