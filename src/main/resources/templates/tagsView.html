@@ -11,6 +11,7 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
+
         <div class="postTags" th:each="postTag: ${postTagsModel}">
             <a th:href="|/postTag/${postTag.id}|">
                 <h1 th:text="${postTag.name}">Name</h1>
@@ -18,7 +19,6 @@
 
         </div>
     </main>
-
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
 
