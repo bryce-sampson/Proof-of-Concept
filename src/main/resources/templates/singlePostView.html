@@ -11,7 +11,11 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
-
+        <div class="author" th:each="author: ${postsModel}">
+            <a th:href="|/author/${author.id}|">
+                <h3 th:text="${author.name}"> Name </h3>
+            </a>
+        </div>
     </main>
 
     <footer th:replace="fragments/footer.html :: footer"></footer>

@@ -36,6 +36,7 @@ public class PostController {
 	@RequestMapping({"/post/{id}"})
 	public String findPostById(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("postModel", postRepo.findById(id).get());
+		model.addAttribute("postsModel", postRepo.findById(id).get().getAuthor());
 		return "singlePostView";
 	}
 
