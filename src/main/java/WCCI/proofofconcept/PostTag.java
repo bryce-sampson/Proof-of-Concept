@@ -16,7 +16,7 @@ public class PostTag {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToMany(mappedBy = "postTag")
+	@ManyToMany(mappedBy = "postTags")
 	private Collection<Post> posts = new ArrayList<Post>();
 
 	public void addPost(Post post) {

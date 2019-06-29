@@ -16,10 +16,8 @@
         <div class="post" th:each="post: ${postsModel}">
             <a th:href="|/author/post/${post.id}|">
                 <h1 th:text="${post.title}">Title</h1>
-            </a>
-
-
-        </h1>
+            </a></h1>
+            <a href="/author/">Back to all Musicians</a>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>

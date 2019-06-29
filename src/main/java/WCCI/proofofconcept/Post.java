@@ -1,11 +1,13 @@
 package WCCI.proofofconcept;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -22,16 +24,24 @@ public class Post {
 	@ManyToOne
 	private Genre genre;
 	@ManyToMany
-	private List<PostTag> postTag = new ArrayList<PostTag>();
+	private Collection<PostTag> postTags = new ArrayList<PostTag>();
+
 	
 	public void addPostTag(PostTag postTag) {
-		this.postTag.add(postTag);
+		if (!postTags.contains(postTag)) {
+			this.postTags.add(postTag);
+		}
+			
 		
 	}
 
 	String title;
 	String publishDate;
+	
+	@Lob
 	String body;
+	
+	
 
 	public Post(String title, Author author, Genre genre, String publishDate, String body) {
 		super();
@@ -70,8 +80,8 @@ public class Post {
 		return body;
 	}
 
-	public List<PostTag> getPostTag() {
-		return postTag;
+	public Collection<PostTag> getPostTag() {
+		return postTags;
 	}
 
 	@Override
