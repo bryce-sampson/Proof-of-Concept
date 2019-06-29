@@ -12,14 +12,16 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
-        <div class="post" th:each="post: ${postsModel}">
-            <a th:href="|/author/${post.id}|">
-                <h1 th:text="${post.title}">Title</h1>
-            </a>
+        <h1 class="post" th:each="post: ${postsModel}">
+            <a th:href="|/author/${post.id}|" th:text="${post.title}">Title</a>
 
-        </div>
+        </h1>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
 
 </html>
+
+<!-- <h2 th:each="review: ${reviewsAttribute}">
+        <a th:text="${review.title}" th:href="|/all-reviews/${review.id}|">Review Title</a>
+      </h2> -->

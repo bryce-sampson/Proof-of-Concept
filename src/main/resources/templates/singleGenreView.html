@@ -12,14 +12,11 @@
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
         <p> X marks spot</p>
-        <ul>
-            <li th:each="post: ${postsModel}">
-                <a th:href="|/author/${posts.id}|">
-                    <h3 th:text="${post.title}"> a title </h3>
-                    <h3 th:text="${post.publishDate}"> 100 ACE</h3>
-                </a>
-            </li>
-        </ul>
+        <div class="genre" th:each="genre: ${genreModel}">
+            <a th:href="|/genre/${genre.name}|">
+                <h3 th:text="${genre.name}"> Name </h3>
+            </a>
+        </div>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>

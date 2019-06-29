@@ -11,7 +11,12 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
+        <div class="genre" th:each="genre: ${genresModel}">
+            <a th:href="|/genre/${genre.name}|">
+                <h1 th:text="${genre.name}">Name</h1>
+            </a>
 
+        </div>
     </main>
 
     <footer th:replace="fragments/footer.html :: footer"></footer>
