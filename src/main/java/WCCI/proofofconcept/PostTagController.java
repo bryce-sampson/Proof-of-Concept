@@ -17,7 +17,7 @@ public class PostTagController {
 	
 	@RequestMapping("")
 	public String renderPostTagsAll(Model model) {
-		model.addAttribute("postTagModel", postTagRepo.findAll());
+		model.addAttribute("postTagsModel", postTagRepo.findAll());
 		return "tagsView";
 	}
 	@RequestMapping("/{name}")

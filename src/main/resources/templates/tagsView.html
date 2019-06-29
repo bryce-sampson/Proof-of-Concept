@@ -11,8 +11,9 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main>
-        <div class="postTags" th:each="postTag: ${postTagModel}">
-            <a th:href="|/postTag/${postTag.name}|">
+
+        <div class="postTags" th:each="postTag: ${postTagsModel}">
+            <a th:href="|/postTag/${postTag.id}|">
                 <h1 th:text="${postTag.name}">Name</h1>
             </a>
 
