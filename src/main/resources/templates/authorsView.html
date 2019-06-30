@@ -9,12 +9,24 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
+        <div>
+            <h1>Add New author</h1>
+            <form action="/author/add" method="POST">
+                <label>
+                    <h2>Name</h2>
+                    <input type="text" name="name" value="enter name, ex: jonny cash" />
+                    <button type="submit">Create New Author</button>
+                </label>
+            </form>
+        </div>
+
         <div class="author" th:each="author: ${authorsModel}">
             <a th:href="|/author/${author.id}|">
                 <h1 th:text="${author.name}">Name</h1>
             </a>
 
         </div>
+
     </main>
 
     <footer th:replace="fragments/footer.html :: footer"></footer>

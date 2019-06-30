@@ -11,51 +11,52 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/author")
 public class PostController {
 
-	@Autowired
-	private PostRepository postRepo;
-	
-	@Autowired
-	private AuthorRepository authorRepo;
-	
-	@Autowired
-	private GenreRepository genreRepo;
+    @Autowired
+    private PostRepository postRepo;
+    
+    @Autowired
+    private AuthorRepository authorRepo;
+    
+    @Autowired
+    private GenreRepository genreRepo;
 
-	@RequestMapping("")
-	public String renderAuthorsAll(Model model) {
-		model.addAttribute("authorsModel", authorRepo.findAll());
-		return "authorsView";
-	}
+    @RequestMapping("")
+    public String renderAuthorsAll(Model model) {
+        model.addAttribute("authorsModel", authorRepo.findAll());
+        return "authorsView";
+    }
 
-	@RequestMapping("{id}")
-	public String findAllPostByAuthor(@PathVariable ("id") Long id, Model model) {
-		model.addAttribute("authorModel", authorRepo.findById(id).get());
-		model.addAttribute("postsModel", authorRepo.findById(id).get().getPosts());
-		return "singleAuthorView";
-	}
+    @RequestMapping("{id}")
+    public String findAllPostByAuthor(@PathVariable ("id") Long id, Model model) {
+        model.addAttribute("authorModel", authorRepo.findById(id).get());
+        model.addAttribute("authorsModel", authorRepo.findAll());
+        model.addAttribute("postsModel", authorRepo.findById(id).get().getPosts());
+        model.addAttribute("genresModel", genreRepo.findAll());
+        return "singleAuthorView";
+    }
 
-	@RequestMapping({"/post/{id}"})
-	public String findPostById(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("postModel", postRepo.findById(id).get());
-		model.addAttribute("postsModel", postRepo.findById(id).get().getAuthor());
-		return "singlePostView";
-	}
+    @RequestMapping({"/post/{id}"})
+    public String findPostById(@PathVariable("id") Long id, Model model, String name) {
+        model.addAttribute("postModel", postRepo.findById(id).get());
+        return "singlePostView";
+    }
 
-	@PostMapping("/add/post/")
-	public String addPost(String title, Author author, Genre genre, String publishDate, String body) {
-		Post postToAdd = new Post(title, author, genre, publishDate, body);
-		postRepo.save(postToAdd);
-		return "redirect:/author/post" + postToAdd.getId();
-		
-	}
-	
-//	changed from post to author, posted need a object to be made, the author was easier
-	@PostMapping("/add/{name}")
-	public String addAuthor(@PathVariable("name") String name) {
-		Author authorToAdd = new Author(name);
-		authorRepo.save(authorToAdd);
-		return "redirect:/";
-		
-	}
+    @PostMapping("post")
+    public String addPost(String title, Author author, String genreName, String publishDate, String body) {
+        Genre genreToLink = genreRepo.findByName(genreName);
+        Post postToAdd = new Post(title, author, genreToLink, publishDate, body);
+        postRepo.save(postToAdd);
+        return "redirect:/author/" + postToAdd.getAuthor().getId();
+        
+    }
+    
+//    changed from post to author, posted need a object to be made, the author was easier
+    @PostMapping("add")
+    public String addAuthor(String name) {
+        authorRepo.save(new Author(name));
+        return "redirect:/author";
+        
+    }
 
-	
+    
 }
