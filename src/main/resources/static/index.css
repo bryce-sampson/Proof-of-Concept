@@ -43,6 +43,10 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+.header img {
+  height: 55px;
+  width: 55px;
+}
 
 .header-title {
   color: #eb660d;
