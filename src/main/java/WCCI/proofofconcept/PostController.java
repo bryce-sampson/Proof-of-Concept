@@ -43,9 +43,11 @@ public class PostController {
 
 	@PostMapping("post")
 	public String addPost(String title, Author author, String genreName, String publishDate, String body) {
+		System.out.println("GENRE: " + genreName);
 		Genre genreToLink = genreRepo.findByName(genreName);
 		Post postToAdd = new Post(title, author, genreToLink, publishDate, body);
 		postRepo.save(postToAdd);
+		genreRepo.save(genreToLink);
 		return "redirect:/author/" + postToAdd.getAuthor().getId();
 
 	}
