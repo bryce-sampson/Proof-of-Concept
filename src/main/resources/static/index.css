@@ -82,3 +82,4 @@ ul {
   transform: translateY(calc(100% + 1rem));
   animation: toast-pop 0.5s ease-out 2s forwards;
 }
+

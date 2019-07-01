@@ -11,8 +11,16 @@
     <main class="container">
         <div class="postTag" th:each="postTag: ${postTagModel}">
             <a th:href="|/postTag/${postTag.name}|">
-                <h3 th:text="${postTag.name}"> Name </h3>
+                <h1 th:text="${postTag.name}"> Name </h1>
             </a>
+        </div>
+
+        <h2>List of post</h2>
+        <div class="post" th:each="post: ${postTagListModel}">
+            <a th:href="|/author/post/${post.id}|">
+                <h3 th:text="${post.title}">Titlex</h3>
+            </a>
+
         </div>
         <a href="/postTag/">All Tags</a>
     </main>

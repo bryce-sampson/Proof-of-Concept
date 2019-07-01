@@ -10,12 +10,11 @@
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
         <div>
-            <h1>Add New author</h1>
+            <h2>Add New Musician</h2>
             <form action="/author/add" method="POST">
                 <label>
-                    <h2>Name</h2>
-                    <input type="text" name="name" value="enter name, ex: jonny cash" />
-                    <button type="submit">Create New Author</button>
+                    <input type="text" required name="name" placeholder="jonny cash" />
+                    <button type="submit">Create New Musician</button>
                 </label>
             </form>
         </div>
