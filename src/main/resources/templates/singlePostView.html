@@ -9,10 +9,30 @@
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
-        <div class="author" th:each="author: ${postsModel}">
-            <a th:href="|/author/${author.id}|">
-                <h3 th:text="${author.name}"> Name </h3>
-            </a>
+        <h1 th:text="${postModel.title}">Title</h1>
+        <a th:href="|/author/${postModel.author.id}|">
+            <h2 th:text="${postModel.author.name}">
+            </h2>
+        </a>
+        <a th:href="|/genre/${postModel.genre.name}|">
+            <h2 th:text="${postModel.genre.name}">genre</h2>
+        </a>
+        <div th:text="${postModel.publishDate}">publish date</div>
+        <div th:text="${postModel.body}">body</div>
+        <div>
+            <h2>Add New Tag</h2>
+            <form action="/postTag/add" method="POST">
+                <label>
+                    <h1>Tag Name</h1>
+                    <input type="text" name="name" placeholder="PostTag Name" />
+
+
+                    <input type="hidden" name="id" th:value="${postModel.id}" />
+
+
+                    <button type="submit">Create New Tag</button>
+                </label>
+            </form>
         </div>
     </main>
 

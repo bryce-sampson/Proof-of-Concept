@@ -12,14 +12,14 @@
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
 
-        <h3 th:text="${authorModel.name}"> Name </h3>
+        <h1 th:text="${authorModel.name}"> Name </h1>
 
         <h1>New Post</h1>
 
         <form action="/author/post" method="POST">
             <label>
                 <h2>Title</h2>
-                <input type="text" name="title" value="Post Title" />
+                <input type="text" required name="title" placeholder="Post Title" />
             </label>
 
             <label>
@@ -28,7 +28,7 @@
 
             <label>
                 <h2>genre</h2>
-                <input list="genres" name="genre" />
+                <input list="genres" name="genre" required />
                 <datalist id="genres">
                     <option th:each="genre: ${genresModel}" th:value="${genre.name}">
 
@@ -36,23 +36,22 @@
             </label>
             <label>
                 <h2>publish date</h2>
-                <input type="text" name="publishDate" value="Publish Date" />
+                <input type="text" required name="publishDate" placeholder="Publish Date" />
             </label>
             <label>
                 <h2>Body</h2>
-                <input type="text" name="body" value="Post Body" />
+                <textarea type="text" required maxlength="1000" rows="3" cols="100" name="body"
+                    placeholder="Post Body"></textarea>
             </label>
 
             <button type="submit">Create New Post</button>
         </form>
         <h2>List of post</h2>
-        <div class="post" th:each="post: ${postsModel}">
+        <ol class="post" th:each="post: ${postsModel}">
             <a th:href="|/author/post/${post.id}|">
-                <h1 th:text="${post.title}">Titlex</h1>
+                <h3 th:text="${post.title}">Titlex</h3>
             </a>
-
-
-            </h1>
+        </ol>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>

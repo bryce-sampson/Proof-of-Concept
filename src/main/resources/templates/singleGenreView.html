@@ -15,6 +15,11 @@
             </a>
         </div>
         <a href="/genre/">All Genres</a>
+        <h2>List of post</h2>
+        <div class="post" th:each="post: ${postsModel}">
+            <a th:href="|/author/post/${post.id}|">
+                <h1 th:text="${post.title}">Titlex</h1>
+            </a>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>

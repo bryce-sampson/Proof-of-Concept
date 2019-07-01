@@ -10,8 +10,8 @@
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
         <div class="postTags" th:each="postTag: ${postTagsModel}">
-            <a th:href="|/postTag/${postTag.id}|">
-                <h1 th:text="${postTag.name}">Name</h1>
+            <a th:href="|/postTag/${postTag.name}|">
+                <h3 th:text="${postTag.name}">Name</h3>
             </a>
 
         </div>
