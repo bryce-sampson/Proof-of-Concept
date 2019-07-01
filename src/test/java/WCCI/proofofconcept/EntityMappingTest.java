@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class EntityMappingTest {
@@ -19,15 +18,15 @@ public class EntityMappingTest {
 
 	@Autowired
 	private PostRepository postRepo;
-	
+
 	@Autowired
 	private AuthorRepository authorRepo;
-	
+
 	@Autowired
 	private GenreRepository genreRepo;
 
 	@Test
-	public void shouldSaveAndLoadPost( ) {
+	public void shouldSaveAndLoadPost() {
 		Author author = new Author("dan");
 		Genre punk = new Genre("punk");
 		Post post = new Post("1", author, punk, null, null);
@@ -47,7 +46,7 @@ public class EntityMappingTest {
 		Author foundAuthor = authorRepo.findById(author.getId()).get();
 		assertThat(foundAuthor.getName(), is("dan"));
 	}
-	
+
 	@Test
 	public void shouldSaveAndLoadGenre() {
 		Genre genre = new Genre("punk");
@@ -56,15 +55,16 @@ public class EntityMappingTest {
 		Genre foundGenre = genreRepo.findById(genre.getId()).get();
 		assertThat(foundGenre.getName(), is("punk"));
 	}
-	
+
 	@Test
-	public void addPostToAuthorAndGetPostCollectionSize(){
+	public void addPostToAuthorAndGetPostCollectionSize() {
 		Author dan = new Author("dan");
 		entityManager.persist(dan);
 		entityManager.flush();
 		dan.addPost(new Post());
-		assertThat(dan.getPosts().size(), is(1));	
+		assertThat(dan.getPosts().size(), is(1));
 	}
+
 	@Test
 	public void addPostToGenreAndGetCollectionSize() {
 		Genre punk = new Genre("punk");
@@ -72,18 +72,20 @@ public class EntityMappingTest {
 		entityManager.flush();
 		punk.addPost(new Post());
 		assertThat(punk.getPosts().size(), is(1));
-			
+
 	}
-	@Test 
+
+	@Test
 	public void addPostTagsToPostAndGetCollectionSize() {
 		PostTag stick = new PostTag("stick");
 		entityManager.persist(stick);
 		entityManager.flush();
 		stick.addPost(new Post());
 		assertThat(stick.getPosts().size(), is(1));
-		
+
 	}
-	@Test 
+
+	@Test
 	public void addPostTagsTwiceToPostAndGetCollectionSize() {
 		PostTag stick = new PostTag("stick");
 		entityManager.persist(stick);
@@ -91,32 +93,7 @@ public class EntityMappingTest {
 		stick.addPost(new Post());
 		stick.addPost(new Post());
 		assertThat(stick.getPosts().size(), is(2));
-		
+
 	}
-	@Test
-	public void addPostToPostTagTwiceAndGetCollectionSize() {
-		Author author = new Author("dan");
-		Genre punk = new Genre("punk");
-		Post post = new Post("post", author, punk, null, null);
-		entityManager.persist(author);
-		entityManager.persist(punk);
-		entityManager.persist(post);
-		entityManager.flush();
-		post.addPostTag(new PostTag());
-		post.addPostTag(new PostTag());
-		assertThat(post.getPostTag().size(), is(2));
-		
-	}
-
-
-
-
-
-
-
-
-
-
-
 
 }

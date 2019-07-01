@@ -3,9 +3,7 @@
 
 <head>
     <div th:insert="fragments/head.html :: head"></div>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Noisy Nimbus Musician</title>
 </head>
 
 <body>
@@ -14,7 +12,7 @@
 
         <h1 th:text="${authorModel.name}"> Name </h1>
 
-        <h1>New Post</h1>
+        <h1>Add New Song</h1>
 
         <form action="/author/post" method="POST">
             <label>
@@ -44,12 +42,12 @@
                     placeholder="Post Body"></textarea>
             </label>
 
-            <button type="submit">Create New Post</button>
+            <button type="submit">Create New Song</button>
         </form>
-        <h2>List of post</h2>
+        <h2>List of Songs</h2>
         <ol class="post" th:each="post: ${postsModel}">
             <a th:href="|/author/post/${post.id}|">
-                <h3 th:text="${post.title}">Titlex</h3>
+                <h3 th:text="${post.title}">Title</h3>
             </a>
         </ol>
     </main>

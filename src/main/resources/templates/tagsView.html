@@ -11,7 +11,7 @@
     <main class="container">
         <div class="postTags" th:each="postTag: ${postTagsModel}">
             <a th:href="|/postTag/${postTag.name}|">
-                <h3 th:text="${postTag.name}">Name</h3>
+                <h1 th:text="${postTag.name}">Name</h1>
             </a>
 
         </div>

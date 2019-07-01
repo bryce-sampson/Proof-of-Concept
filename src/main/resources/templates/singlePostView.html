@@ -3,7 +3,7 @@
 
 <head>
     <div th:insert="fragments/head.html :: head"></div>
-    <title>Song</title>
+    <title>Noisey Nimbus Song</title>
 </head>
 
 <body>
@@ -11,7 +11,7 @@
     <main class="container">
         <h1 th:text="${postModel.title}">Title</h1>
         <a th:href="|/author/${postModel.author.id}|">
-            <h2 th:text="${postModel.author.name}">
+            <h2 th:text="${postModel.author.name}">Musician
             </h2>
         </a>
         <a th:href="|/genre/${postModel.genre.name}|">
@@ -20,6 +20,7 @@
         <div th:text="${postModel.publishDate}">publish date</div>
         <div th:text="${postModel.body}">body</div>
         <div>
+
             <h2>Add New Tag</h2>
             <form action="/postTag/add" method="POST">
                 <label>

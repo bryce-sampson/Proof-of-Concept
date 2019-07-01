@@ -3,23 +3,25 @@
 
 <head>
     <div th:insert="fragments/head.html :: head"></div>
-    <title>Genre</title>
+    <title>Noisey Nimbus Genre</title>
 </head>
 
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
+        <h1>Genre Name</h1>
         <div class="genre" th:each="genre: ${genreModel}">
             <a th:href="|/genre/${genre.name}|">
-                <h3 th:text="${genre.name}"> Name </h3>
+                <h2 th:text="${genre.name}"> Name </h2>
             </a>
         </div>
-        <a href="/genre/">All Genres</a>
-        <h2>List of post</h2>
+        <h2>List of Songs</h2>
         <div class="post" th:each="post: ${postsModel}">
             <a th:href="|/author/post/${post.id}|">
-                <h1 th:text="${post.title}">Titlex</h1>
+                <h2 th:text="${post.title}">Title</h2>
             </a>
+        </div>
+        <a href="/genre/">Back to all Genres</a>
     </main>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
