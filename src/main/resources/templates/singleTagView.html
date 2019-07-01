@@ -3,26 +3,27 @@
 
 <head>
     <div th:insert="fragments/head.html :: head"></div>
-    <title>Document</title>
+    <title>Noisey Nimbus Tag</title>
 </head>
 
 <body>
     <Header th:replace="fragments/header.html :: header"></header>
     <main class="container">
+        <h1>Tag Name</h1>
         <div class="postTag" th:each="postTag: ${postTagModel}">
             <a th:href="|/postTag/${postTag.name}|">
-                <h1 th:text="${postTag.name}"> Name </h1>
+                <h2 th:text="${postTag.name}"> Name </h2>
             </a>
         </div>
 
-        <h2>List of post</h2>
+        <h2>List of Songs</h2>
         <div class="post" th:each="post: ${postTagListModel}">
             <a th:href="|/author/post/${post.id}|">
-                <h3 th:text="${post.title}">Titlex</h3>
+                <h2 th:text="${post.title}">Title</h2>
             </a>
 
         </div>
-        <a href="/postTag/">All Tags</a>
+        <a href="/postTag/">Back to all Tags</a>
     </main>
 
     <footer th:replace="fragments/footer.html :: footer"></footer>
